@@ -1,0 +1,30 @@
+{
+  "description": "Dissect tab-separated SSH log lines and normalize fields",
+  "processors": [
+    {
+      "dissect": {
+        "field": "message",
+        "pattern": "%{event.timestamp}\t%{network.session}\t%{source.ip}\t%{source.port}\t%{destination.ip}\t%{destination.port}\t%{event.outcome}\t%{network.direction}\t%{client.banner}\t%{server.banner}\t%{extra1}\t%{extra2}\t%{extra3}\t%{extra4}\t%{extra5}",
+        "ignore_missing": true
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "source": "if (ctx.event != null && ctx.event.timestamp != null) { double s = Double.parseDouble(ctx.event.timestamp.toString()); long ms = (long)(s * 1000L); ctx['@timestamp'] = new java.util.Date(ms); }"
+      }
+    },
+    {
+      "convert": { "field": "source.port", "type": "integer", "ignore_missing": true }
+    },
+    {
+      "convert": { "field": "destination.port", "type": "integer", "ignore_missing": true }
+    },
+    {
+      "set": { "field": "event.dataset", "value": "ssh" }
+    },
+    {
+      "remove": { "field": ["event.timestamp","extra1","extra2","extra3","extra4","extra5"], "ignore_missing": true }
+    }
+  ]
+}

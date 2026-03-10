@@ -1,0 +1,48 @@
+{
+  "index_patterns": ["ssh-logs-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "network": {
+          "properties": {
+            "session": { "type": "keyword" },
+            "direction": { "type": "keyword" }
+          }
+        },
+        "source": {
+          "properties": {
+            "ip": { "type": "ip" },
+            "port": { "type": "integer" }
+          }
+        },
+        "destination": {
+          "properties": {
+            "ip": { "type": "ip" },
+            "port": { "type": "integer" }
+          }
+        },
+        "event": {
+          "properties": {
+            "outcome": { "type": "keyword" },
+            "dataset": { "type": "keyword" }
+          }
+        },
+        "client": {
+          "properties": {
+            "banner": { "type": "text", "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } } }
+          }
+        },
+        "server": {
+          "properties": {
+            "banner": { "type": "text", "fields": { "keyword": { "type": "keyword", "ignore_above": 256 } } }
+          }
+        },
+        "message": { "type": "text" }
+      }
+    }
+  }
+}

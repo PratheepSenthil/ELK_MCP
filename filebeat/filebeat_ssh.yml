@@ -1,0 +1,23 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /mnt/c/Users/KIIT0001/Documents/Projects/sample_logs/ssh.log
+  fields:
+    dataset: ssh
+  fields_under_root: true
+
+# Ensure Filebeat registers the index template that matches the custom index name.
+# This avoids warnings when you set a custom `index` in `output.elasticsearch`.
+setup.template.enabled: true
+setup.template.name: "ssh-logs"
+setup.template.pattern: "ssh-logs-*"
+# Optionally disable ILM if you want classic index rollover handling
+setup.ilm.enabled: false
+
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]
+  pipeline: "ssh_ingest_pipeline"
+  index: "ssh-logs-%{+yyyy.MM.dd}"
+
+logging.level: info

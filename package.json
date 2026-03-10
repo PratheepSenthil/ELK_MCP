@@ -1,0 +1,30 @@
+{
+  "name": "mcp_siem",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "test": "tsx src/test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^9.1.1",
+    "@modelcontextprotocol/sdk": "^1.18.1",
+    "@types/node": "^24.5.2",
+    "cors": "^2.8.5",
+    "express": "^5.0.1",
+    "node-fetch": "^3.3.2",
+    "package.json": "^2.0.1",
+    "typescript": "^5.9.2",
+    "uuid": "^13.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5"
+  }
+}
