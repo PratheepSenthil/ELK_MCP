@@ -78,9 +78,3 @@ Once the agent is connected, you can use prompts like:
 * `Check for any 'Critical' severity alerts in the last 4 hours.`
 * `Search the logs for any IP addresses associated with brute force attempts.`
 * `Visualize the trend of 404 errors from my web traffic indices.`
-
-## License
-
-This project is licensed under the MIT License.
-
-```
