@@ -33,9 +33,9 @@ This server allows AI agents (such as Claude) to interact directly with your Sec
    cd ELK_MCP
    ```
 2. **Install dependencies:**
-  ```bash
-  npm install
-  ```
+   ```bash
+   npm install
+   ```
 3. **Build the project:**
    ```bash
    npm run build
